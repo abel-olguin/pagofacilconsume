@@ -5,9 +5,9 @@
  * Date: 29/07/16
  * Time: 21:36
  */
-use \pagofacilconsume\PagoFacil as PagoFacil;
 
 include __DIR__."/../PagoFacil.php";
+use \pagofacilconsume\PagoFacil as PagoFacil;
 
 PagoFacil::initialize(1,1);
 

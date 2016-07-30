@@ -1,12 +1,12 @@
 <?php
-namespace pagofacilconsume;
 /**
  * Created by Vendetta.
  * User: abelolguinchavez
  * Date: 29/07/16
  * Time: 11:19
  */
-ini_set("display_errors",1);
+
+namespace pagofacilconsume;
 
 include __DIR__."/Rest.php";
 

@@ -1,11 +1,11 @@
 <?php
-namespace pagofacilconsume;
 /**
  * Created by Vendetta.
  * User: abelolguinchavez
  * Date: 29/07/16
  * Time: 12:27
  */
+namespace pagofacilconsume;
 class Rest
 {
     public static function call($method, $url, $data = false)
