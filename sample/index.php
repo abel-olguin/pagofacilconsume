@@ -7,6 +7,7 @@
  */
 
 include __DIR__."/../PagoFacil.php";
+
 use \pagofacilconsume\PagoFacil as PagoFacil;
 
 PagoFacil::initialize(1,1);
@@ -33,4 +34,15 @@ $data = [
     "data[estado]"          => "DistritoFederal",
     "data[pais]"            => "Mexico"];
 
-var_dump(PagoFacil::charge($data));
+var_dump(PagoFacil::card_charge($data));
+
+$data = [
+    "order_id"      =>	"tienda_".uniqid().date("d-m-Y : h:s:i"),
+    "product"       =>	"tu producto",
+    "amount"        =>	"1000",
+    "store_code"    =>	"OXXO",
+    "customer"      =>	"pedro	perez",
+    "email"         =>	"comprador@correo.com"
+];
+
+var_dump(PagoFacil::cash_charge($data));

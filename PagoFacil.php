@@ -15,8 +15,8 @@ class PagoFacil
     public static $id_sucursal;
     public static $id_usuario;
     private static $develop     = false;
-    private static $api_dev     = "https://www.pagofacil.net/st/public/Wsrtransaccion/index/format/json";
-    private static $api_prod    = "https://www.pagofacil.net/ws/public/Wsrtransaccion/index/format/json";
+    private static $api_dev     = "https://www.pagofacil.net/st/public/";
+    private static $api_prod    = "https://www.pagofacil.net/ws/public/";
 
     /**
      * @param $id_sucursal
@@ -50,14 +50,33 @@ class PagoFacil
     }
 
 
-    public static function charge($params){
+    /**
+     * @param $params
+     * @return mixed
+     *
+     * Generar un cargo
+     *
+     * Genera un cargo en dinerofacil
+     */
+    public static function card_charge($params){
         $internal_values = ["data[idSucursal]" => self::$id_sucursal,
                             "data[idUsuario]"  => self::$id_usuario,
                             "method"           => "transaccion"];
 
         $data = array_merge($internal_values,$params);
 
-        return Rest::call("get",self::get_api_url(),$data);
+        return Rest::call("get",self::get_api_url()."Wsrtransaccion/index/format/json",$data);
+    }
+
+    public static function cash_charge($params){
+        $internal_values = [
+            "branch_key"    => self::$id_sucursal,
+            "user_key"      => self::$id_usuario
+        ];
+
+        $data = array_merge($internal_values,$params);
+
+        return Rest::call("post",self::get_api_url()."cash/charge",$data);
     }
     /**
      * @return string
